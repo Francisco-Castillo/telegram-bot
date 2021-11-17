@@ -5,6 +5,9 @@
  */
 package com.fcastillo.telegrambot;
 
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+
 /**
  *
  * @author fcastillo
@@ -12,6 +15,11 @@ package com.fcastillo.telegrambot;
 public class App {
 
   public static void main(String[] args) {
-
+    try {
+      TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+      botsApi.registerBot(new Bot());
+    } catch (Exception e) {
+      System.out.println("Excepcion: " + e.getLocalizedMessage());
+    }
   }
 }
