@@ -22,16 +22,22 @@ public class Bot extends TelegramLongPollingBot {
 
   @Override
   public void onUpdateReceived(Update update) {
-
-    if (update.hasMessage() && update.getMessage().hasText()) {
-      try {
-        Message message = update.getMessage();
-        Command command = CommandManager.create(message.getText());
-        command.sendMessage(message.getChatId().toString());
-      } catch (Exception e) {
-        System.out.println("Ocurrio un error: " + e.getLocalizedMessage());
+    
+    Runnable runnable = () -> {
+      if (update.hasMessage() && update.getMessage().hasText()) {
+        try {
+          Message message = update.getMessage();
+          Command command = CommandManager.create(message.getText());
+          command.sendMessage(message.getChatId().toString());
+        } catch (Exception e) {
+          System.out.println("Ocurrio un error: " + e.getLocalizedMessage());
+        }
       }
-    }
+    };
+
+    Thread thread = new Thread(runnable);
+    thread.start();
+
   }
 
   @Override
