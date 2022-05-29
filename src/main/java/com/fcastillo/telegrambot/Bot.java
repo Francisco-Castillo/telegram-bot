@@ -28,7 +28,7 @@ public class Bot extends TelegramLongPollingBot {
         try {
           Message message = update.getMessage();
           Command command = CommandManager.create(message.getText());
-          command.sendMessage(message.getChatId().toString());
+          command.sendMessage(message);
         } catch (Exception e) {
           System.out.println("Ocurrio un error: " + e.getLocalizedMessage());
         }

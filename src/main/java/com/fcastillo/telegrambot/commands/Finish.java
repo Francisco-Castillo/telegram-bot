@@ -8,6 +8,7 @@ package com.fcastillo.telegrambot.commands;
 import com.fcastillo.telegrambot.Bot;
 import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -18,7 +19,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class Finish implements Command {
 
   @Override
-  public void sendMessage(String chatId) {
+  public void sendMessage(Message message) {
     try {
       Bot bot = new Bot();
       
@@ -26,7 +27,7 @@ public class Finish implements Command {
       
       sendMessage.setText("¡Gracias por utilizarme, hasta la próxima!");
       sendMessage.setParseMode(ParseMode.MARKDOWN);
-      sendMessage.setChatId(chatId);
+      sendMessage.setChatId(message.getChatId().toString());
       
       ReplyKeyboardRemove keyboardMarkup = new ReplyKeyboardRemove(Boolean.TRUE);
       

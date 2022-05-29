@@ -5,12 +5,14 @@
  */
 package com.fcastillo.telegrambot.commands;
 
+import org.telegram.telegrambots.meta.api.objects.Message;
+
 /**
  *
  * @author fcastillo
  */
 public interface Command {
 
-  public void sendMessage(String chatId);
+  public void sendMessage(Message message);
   
 }
